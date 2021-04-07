@@ -52,6 +52,7 @@ namespace lab3
         {
             try {
                 var binaryFlag = new MultipleBinaryFlag(length, initialValue);
+                Assert.NotNull(binaryFlag);
             } catch (Exception e) {
                 Assert.True(false,route);
             }
@@ -65,6 +66,7 @@ namespace lab3
         public void WrongLengthPassed(ulong length, string route) {
             try {
                 var binaryFlag = new MultipleBinaryFlag(length);
+                Assert.NotNull(binaryFlag);
                 Assert.True(false, route);
             } catch (Exception e) {
                 Assert.True(true);
@@ -80,7 +82,9 @@ namespace lab3
         {
             try {
                 var binaryFlag = new MultipleBinaryFlag(length, initialValue);
+                Assert.NotNull(binaryFlag);
                 var binaryFlag2 = new MultipleBinaryFlag(length, initialValue);
+                Assert.NotNull(binaryFlag2);
                 Assert.Equal(binaryFlag, binaryFlag2);
                 Assert.True(false, route);
             } catch (Exception e) {
@@ -99,6 +103,7 @@ namespace lab3
             try {
                 var binaryFlag = new MultipleBinaryFlag(length, boolean);
                 var flag = binaryFlag.GetFlag();
+                Assert.NotNull(flag);
                 Assert.Equal(flag, boolean);
             } catch (Exception e) {
                 Assert.True(false, message);
@@ -113,6 +118,7 @@ namespace lab3
             try {
                 var binaryFlag = new MultipleBinaryFlag(length);
                 var flag = binaryFlag.GetFlag();
+                Assert.NotNull(flag);
                 Assert.Equal(flag, true);
             } catch(Exception e) {
                 Assert.True(false, message);
@@ -129,6 +135,7 @@ namespace lab3
                 var binaryFlag = new MultipleBinaryFlag(length, initialValue);
                 binaryFlag.SetFlag(position);
                 var flag = binaryFlag.GetFlag();
+                Assert.NotNull(flag);
                 Assert.Equal(flag, initialValue);
             } catch (Exception e) {
                 Assert.True(false, message);
@@ -157,6 +164,7 @@ namespace lab3
                     binaryFlag.SetFlag(position);
                 }
                 var flag = binaryFlag.GetFlag();
+                Assert.NotNull(flag);
                 Assert.Equal(flag, expected);
             } catch (Exception e) {
                 Assert.True(false, message);
@@ -177,6 +185,7 @@ namespace lab3
                     binaryFlag.SetFlag(i);
                 }
                 var flag = binaryFlag.GetFlag();
+                Assert.NotNull(flag);
                 Assert.Equal(flag, expected);
             } catch (Exception e) {
                 Assert.True(false, message);
@@ -285,6 +294,7 @@ namespace lab3
             try {
                 var binaryFlag = new MultipleBinaryFlag(length, boolean);
                 var flag = binaryFlag.GetFlag();
+                Assert.NotNull(flag);
                 Assert.Equal(flag, boolean);
             } catch (Exception e) {
                 Assert.True(false, route);
@@ -343,6 +353,7 @@ namespace lab3
                 var binaryFlag = new MultipleBinaryFlag(length, boolean);
                 binaryFlag.ResetFlag(0);
                 var flag = binaryFlag.GetFlag();
+                Assert.NotNull(flag);
                 Assert.Equal(flag, false);
             } catch (Exception e) {
                 Assert.True(false, route);
