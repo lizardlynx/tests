@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IIG.BinaryFlag</name>
+    </assembly>
+    <members>
+        <member name="T:IIG.BinaryFlag.MultipleBinaryFlag">
+            <summary>
+                Class that Provides Functional for Creating and Working with Multiple Binary Flag Object
+            </summary>
+        </member>
+        <member name="M:IIG.BinaryFlag.MultipleBinaryFlag.#ctor(System.UInt64,System.Boolean)">
+            <summary>
+                Constructor for Multiple Binary Flag Object
+            </summary>
+            <param name="length">Length of Binary Flag - How Many Binaries Does Multiple Binary Flag Contain (2-17179868704) </param>
+            <param name="initialValue">Initial Value of Binary Elements of Flag</param>
+        </member>
+        <member name="M:IIG.BinaryFlag.MultipleBinaryFlag.Dispose">
+            <summary>
+                Object Disposing
+            </summary>
+        </member>
+        <member name="M:IIG.BinaryFlag.MultipleBinaryFlag.SetFlag(System.UInt64)">
+            <summary>
+                Set Flag Value at Given Position to True
+            </summary>
+            <param name="position">Position of Binary to Change</param>
+        </member>
+        <member name="M:IIG.BinaryFlag.MultipleBinaryFlag.ResetFlag(System.UInt64)">
+            <summary>
+                Set Flag Value at Given Position to False
+            </summary>
+            <param name="position">Position of Binary to Change</param>
+        </member>
+        <member name="M:IIG.BinaryFlag.MultipleBinaryFlag.GetFlag">
+            <summary>
+                Get Multiple Binary Flag State
+            </summary>
+            <returns>True - if All Binaries are True, otherwise - False</returns>
+        </member>
+    </members>
+</doc>
