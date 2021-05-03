@@ -360,4 +360,32 @@ namespace lab3
             }
         }
     }
+
+    [Collection("Check toString method")]
+    public class ToStringMethod {
+        [Theory]
+        [InlineData(3, false)]
+        [InlineData(2, false)]
+        [InlineData(32, false)]
+        [InlineData(33, false)]
+        [InlineData(64, false)]
+        [InlineData(65, false)]
+        [InlineData(17179868704, false)]
+        [InlineData(3, true)]
+        [InlineData(2, true)]
+        [InlineData(32, true)]
+        [InlineData(33, true)]
+        [InlineData(64, true)]
+        [InlineData(65, true)]
+        [InlineData(17179868704, true)]
+        public void FlagToString(ulong length, bool boolean) {
+            try {
+                var binaryFlag = new MultipleBinaryFlag(length, boolean);
+                binaryFlag.ToString();
+                Assert.True(true);
+            } catch (Exception err) {
+                Assert.True(false);
+            }
+        }
+    }
 }

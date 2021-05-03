@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0"/>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    <PackageReference Include="xunit" Version="2.4.0"/>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0"/>
+    <PackageReference Include="coverlet.collector" Version="1.2.0"/>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2"/>
+    <Reference Include="IIG.PasswordHashingUtils">
+      <HintPath>IIG.PasswordHashingUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="IIG.FileWorker">
+      <HintPath>IIG.FileWorker.dll</HintPath>
+    </Reference>
+    <Reference Include="IIG.BinaryFlag">
+      <HintPath>IIG.BinaryFlag.dll</HintPath>
+    </Reference>
+    <Reference Include="IIG.DatabaseConnectionUtils">
+      <HintPath>IIG.DatabaseConnectionUtils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
