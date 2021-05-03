@@ -99,10 +99,22 @@ namespace lab4
             Assert.Equal(hash, x[x.Length - 1]);
         }
     }
+
+    public class DatabaseFixture {
+        public int index;
+        public FlagpoleDatabaseUtils database;
+        public DatabaseFixture() {
+            index = 0;
+            database = new FlagpoleDatabaseUtils(@"localhost", @"IIG.CoSWE.FlagPoleDB", false, @"SA", @"#Ananas208", 200);
+        }
+    }
     [Collection("BinaryFlag_Database")]
-    public class BinaryFlag_Database
+    public class BinaryFlag_Database: IClassFixture<DatabaseFixture>
     {
-        private int index = 0;
+        DatabaseFixture databaseFixture;
+        public BinaryFlag_Database(DatabaseFixture databaseFixture) {
+            this.databaseFixture = databaseFixture;
+        }
         [Theory]
         [InlineData(3, true)]
         [InlineData(2, true)]
@@ -110,37 +122,52 @@ namespace lab4
         [InlineData(33, true)]
         [InlineData(64, true)]
         [InlineData(65, true)]
-        public void AddFlag_GetFlag_True(ulong num, Boolean val)
-        {
-            index++;
-            FlagpoleDatabaseUtils database = new FlagpoleDatabaseUtils(@"localhost", @"IIG.CoSWE.FlagPoleDB", false, @"SA", @"#Ananas208", 200);
-            var binaryFlag = new MultipleBinaryFlag(num, val);
-            var flagView = binaryFlag.ToString();
-            var flag = binaryFlag.GetFlag();
-            Boolean res = database.AddFlag(binaryFlag.ToString(), val);
-            Assert.True(res);
-            Boolean res2 = database.GetFlag(1, out flagView, out flag);
-            Assert.True(res2);
-        }
-        
-        [Theory]
         [InlineData(3, false)]
         [InlineData(2, false)]
         [InlineData(32, false)]
         [InlineData(33, false)]
         [InlineData(64, false)]
         [InlineData(65, false)]
-        public void AddFlag_GetFlag_False(ulong num, Boolean val)
+        public void AddFlag_GetFlag(ulong num, Boolean val)
         {
-            index++;
-            FlagpoleDatabaseUtils database = new FlagpoleDatabaseUtils(@"localhost", @"IIG.CoSWE.FlagPoleDB", false, @"SA", @"#Ananas208", 200);
+            databaseFixture.index++;
             var binaryFlag = new MultipleBinaryFlag(num, val);
             var flagView = binaryFlag.ToString();
             var flag = binaryFlag.GetFlag();
-            Boolean res = database.AddFlag(binaryFlag.ToString(), val);
+            var boolean = binaryFlag.GetFlag() ?? false;
+            Boolean res = databaseFixture.database.AddFlag(binaryFlag.ToString(), boolean);
             Assert.True(res);
-            Boolean res2 = database.GetFlag(1, out flagView, out flag);
+            Boolean res2 = databaseFixture.database.GetFlag(databaseFixture.index, out flagView, out flag);
             Assert.True(res2);
+            Assert.Equal(flagView, binaryFlag.ToString());
+            Assert.Equal(flag, binaryFlag.GetFlag());
+        }
+        [Theory]
+        [InlineData(3, true)]
+        [InlineData(2, true)]
+        [InlineData(32, true)]
+        [InlineData(33, true)]
+        [InlineData(64, true)]
+        [InlineData(65, true)]
+        [InlineData(3, false)]
+        [InlineData(2, false)]
+        [InlineData(32, false)]
+        [InlineData(33, false)]
+        [InlineData(64, false)]
+        [InlineData(65, false)]
+        public void AddFlag_GetFlag_(ulong num, Boolean val)
+        {
+            databaseFixture.index++;
+            var binaryFlag = new MultipleBinaryFlag(num, val);
+            var flagView = binaryFlag.ToString();
+            var flag = binaryFlag.GetFlag();
+            var boolean = binaryFlag.GetFlag() ?? false;
+            Boolean res = databaseFixture.database.AddFlag(binaryFlag.ToString(), boolean);
+            Assert.True(res);
+            Boolean res2 = databaseFixture.database.GetFlag(databaseFixture.index, out flagView, out flag);
+            Assert.True(res2);
+            Assert.Equal(flagView, binaryFlag.ToString());
+            Assert.Equal(flag, binaryFlag.GetFlag());
         }
     }
 }
