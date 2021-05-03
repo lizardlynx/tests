@@ -137,33 +137,7 @@ namespace lab4
             var boolean = binaryFlag.GetFlag() ?? false;
             Boolean res = databaseFixture.database.AddFlag(binaryFlag.ToString(), boolean);
             Assert.True(res);
-            Boolean res2 = databaseFixture.database.GetFlag(databaseFixture.index, out flagView, out flag);
-            Assert.True(res2);
-            Assert.Equal(flagView, binaryFlag.ToString());
-            Assert.Equal(flag, binaryFlag.GetFlag());
-        }
-        [Theory]
-        [InlineData(3, true)]
-        [InlineData(2, true)]
-        [InlineData(32, true)]
-        [InlineData(33, true)]
-        [InlineData(64, true)]
-        [InlineData(65, true)]
-        [InlineData(3, false)]
-        [InlineData(2, false)]
-        [InlineData(32, false)]
-        [InlineData(33, false)]
-        [InlineData(64, false)]
-        [InlineData(65, false)]
-        public void AddFlag_GetFlag_(ulong num, Boolean val)
-        {
-            databaseFixture.index++;
-            var binaryFlag = new MultipleBinaryFlag(num, val);
-            var flagView = binaryFlag.ToString();
-            var flag = binaryFlag.GetFlag();
-            var boolean = binaryFlag.GetFlag() ?? false;
-            Boolean res = databaseFixture.database.AddFlag(binaryFlag.ToString(), boolean);
-            Assert.True(res);
+            
             Boolean res2 = databaseFixture.database.GetFlag(databaseFixture.index, out flagView, out flag);
             Assert.True(res2);
             Assert.Equal(flagView, binaryFlag.ToString());
